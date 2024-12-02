@@ -8,9 +8,9 @@
 
 一个专为老妈设计的游戏导航页面，简单易用、界面清晰。
 
-[在线预览](https://loveulaoma.cn) · [问题反馈](https://github.com/your-username/loveulaoma/issues) · [更新日志](#更新日志)
+· [问题反馈](https://github.com/achordchan/love-u-mom/issues) · [更新日志](#更新日志)
 
-<img src="screenshots/preview.png" alt="预览图" width="300">
+
 
 </div>
 
