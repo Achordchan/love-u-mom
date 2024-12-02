@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- 添加作者信息和联系方式 -->
+    <meta name="author" content="Achord">
+    <meta name="contact" content="Tel:13160235855">
+    <meta name="description" content="一个专为老妈设计的游戏导航页面">
+    <meta name="keywords" content="妈妈的游戏,老年游戏,简单游戏,游戏导航">
+    
+    <!-- iOS 全屏应用模式相关设置 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="爱你 老妈">
+    
+    <!-- 添加启动画面图标 -->
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icon.png">
+    
+    <title>爱你 老妈</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>老娘的游戏世界</h1>
+    </div>
+
+    <!-- 添加搜索区域 -->
+    <div class="search-container">
+        <div class="search-box">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M9 17A8 8 0 1 1 9 1a8 8 0 0 1 0 16zm0-2A6 6 0 1 0 9 3a6 6 0 0 0 0 12z" fill="#8E8E93"/>
+                <path d="M13.5 14.5l5 5" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input type="search" placeholder="搜索游戏..." id="searchInput">
+            <button class="clear-button" id="clearSearch" style="display: none;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="8" fill="#C7C7CC"/>
+                    <path d="M7 7l6 6M13 7l-6 6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="recent-games">
+        <h2>最近玩过</h2>
+        <div class="recent-games-list">
+            <!-- 最近游戏将通过 JavaScript 动态插入 -->
+        </div>
+    </div>
+
+    <div class="section-title">
+        <h2>所有游戏</h2>
+    </div>
+
+    <div class="game-grid" id="gameGrid">
+        <!-- 添加状态提示 -->
+        <div class="game-status">暂无此游戏</div>
+        
+        <!-- 贪吃蛇游戏卡片 -->
+        <a href="/tanchishe" class="game-card" data-game-id="snake">
+            <div class="game-icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 32h8v8h8v8h8v-8h8v-8h-8v-8h-8v8h-8v-8h-8v8z" fill="#4CAF50"/>
+                    <circle cx="44" cy="32" r="4" fill="#388E3C"/>
+                </svg>
+            </div>
+            <div class="game-info">
+                <h3>贪吃蛇</h3>
+            </div>
+        </a>
+
+        <!-- 五子棋游戏卡片 -->
+        <a href="/wuziqi" class="game-card" data-game-id="gomoku">
+            <div class="game-icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="12" y="12" width="40" height="40" stroke="#CD853F" stroke-width="2"/>
+                    <path d="M12 22h40 M12 32h40 M12 42h40" stroke="#CD853F" stroke-width="2"/>
+                    <path d="M22 12v40 M32 12v40 M42 12v40" stroke="#CD853F" stroke-width="2"/>
+                    <circle cx="32" cy="32" r="4" fill="#000"/>
+                    <circle cx="22" cy="22" r="4" fill="#FFF"/>
+                </svg>
+            </div>
+            <div class="game-info">
+                <h3>超级五子棋</h3>
+            </div>
+        </a>
+
+        <!-- 俄罗斯方块游戏卡片 -->
+        <a href="/ru" class="game-card" data-game-id="tetris">
+            <div class="game-icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="16" y="16" width="14" height="14" fill="#FF6B6B"/>
+                    <rect x="30" y="16" width="14" height="14" fill="#FF6B6B"/>
+                    <rect x="16" y="30" width="14" height="14" fill="#FF6B6B"/>
+                    <rect x="16" y="44" width="14" height="14" fill="#FF6B6B"/>
+                </svg>
+            </div>
+            <div class="game-info">
+                <h3>俄罗斯方块</h3>
+            </div>
+        </a>
+
+        <!-- 羊了个羊游戏卡片 -->
+        <a href="/yanglegeyang" class="game-card" data-game-id="puzzle">
+            <div class="game-icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 羊的身体 -->
+                    <ellipse cx="32" cy="36" rx="20" ry="16" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="2"/>
+                    <!-- 羊的头 -->
+                    <circle cx="32" cy="24" r="12" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="2"/>
+                    <!-- 羊的耳朵 -->
+                    <path d="M24 18L20 12M40 18L44 12" stroke="#E0E0E0" stroke-width="2" stroke-linecap="round"/>
+                    <!-- 羊的眼睛 -->
+                    <circle cx="28" cy="22" r="2" fill="#333333"/>
+                    <circle cx="36" cy="22" r="2" fill="#333333"/>
+                    <!-- 羊的嘴巴 - 可爱的微笑 -->
+                    <path d="M30 28C32 30 34 30 36 28" stroke="#333333" stroke-width="2" stroke-linecap="round"/>
+                    <!-- 羊的卷毛 -->
+                    <path d="M18 34C16 32 14 34 16 36" stroke="#E0E0E0" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M24 30C22 28 20 30 22 32" stroke="#E0E0E0" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M46 34C48 32 50 34 48 36" stroke="#E0E0E0" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M40 30C42 28 44 30 42 32" stroke="#E0E0E0" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="game-info">
+                <h3>羊了个羊简单版</h3>
+            </div>
+        </a>
+        
+    </div>
+
+    <div class="no-results-container" style="display: none;">
+        <div class="no-results">
+            <svg class="empty-icon" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                <path d="M32 56C45.2548 56 56 45.2548 56 32C56 18.7452 45.2548 8 32 8C18.7452 8 8 18.7452 8 32C8 45.2548 18.7452 56 32 56Z" stroke="#8E8E93" stroke-width="4"/>
+                <path d="M32 36C39 36 39 44 32 44C25 44 25 36 32 36Z" fill="#8E8E93"/>
+                <circle cx="22" cy="28" r="3" fill="#8E8E93"/>
+                <circle cx="42" cy="28" r="3" fill="#8E8E93"/>
+            </svg>
+            <h3>暂无此游戏</h3>
+            <p>告诉我你想玩什么，我会尽快开发</p>
+        </div>
+        <div class="request-game">
+            <textarea 
+                id="gameRequest" 
+                placeholder="比如：我想玩连连看、斗地主（这个有点困难）..."
+                maxlength="200"
+            ></textarea>
+            <div class="char-count">0/200</div>
+            <button id="sendRequest" class="send-button">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M2 10l16-6-16 6zm0 0l7 2m9-8l-9 8-7-2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                告诉我
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.18.5/dist/index.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 

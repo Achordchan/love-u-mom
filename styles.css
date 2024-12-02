@@ -1,0 +1,511 @@
+/* 重置默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    background: linear-gradient(135deg, #FFF5F5 0%, #FFF 100%);
+    color: #000000;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.02em;
+    min-height: 100vh;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
+/* 顶部标题 */
+.header {
+    padding-top: max(44px, env(safe-area-inset-top));
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8787 100%);
+    text-align: center;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+    padding-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 游戏网格布局 */
+.game-grid {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+    width: 100%;
+    max-width: 414px;
+    margin: 0 auto;
+}
+
+/* 游戏卡片样式 */
+.game-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    min-height: 80px;
+    box-shadow: 0 8px 16px rgba(255, 107, 107, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 游戏图标容器 */
+.game-icon {
+    width: 64px;
+    height: 64px;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #F8F8F8;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.game-icon svg {
+    width: 64px;
+    height: 64px;
+}
+
+/* 游戏文字信息 */
+.game-info {
+    flex: 1;
+}
+
+.game-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+    text-align: center;
+}
+
+/* 点击态效果 */
+.game-card:active {
+    transform: scale(0.98) translateY(2px);
+    box-shadow: 0 4px 8px rgba(255, 107, 107, 0.08);
+}
+
+/* 适配 iPhone 11 Pro Max */
+@media screen and (width: 414px) and (height: 896px) {
+    .game-grid {
+        min-height: calc(100vh - 88px);
+    }
+}
+
+/* 近游戏区域 */
+.recent-games {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 16px rgba(255, 107, 107, 0.1);
+    margin: 8px 16px 16px;
+}
+
+.recent-games h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 16px;
+}
+
+.recent-games-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 8px 4px;
+    scroll-padding: 16px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.recent-game-item {
+    background: white;
+    box-shadow: 0 4px 8px rgba(255, 107, 107, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 120px;
+    border: 1px solid rgba(255, 107, 107, 0.1);
+    text-align: center;
+    text-decoration: none;
+    scroll-snap-align: start;
+    transition: all 0.3s ease;
+}
+
+.recent-game-item:active {
+    transform: scale(0.98);
+    background: #FFF5F5;
+}
+
+.recent-game-item .game-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 8px;
+}
+
+.recent-game-item .game-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.recent-game-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 8px;
+}
+
+.section-title {
+    padding: 0 16px;
+    margin-bottom: 8px;
+}
+
+.section-title h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 16px;
+    position: relative;
+    display: inline-block;
+    padding-left: 12px;
+}
+
+.section-title h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 24px;
+    background: #FF6B6B;
+    border-radius: 2px;
+}
+
+/* 隐藏滚动条但保持功能 */
+.recent-games-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* 添加触摸反馈 */
+.game-card,
+.recent-game-item {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+} 
+
+/* 添加爱心装饰 */
+.header::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    background: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 20C12 20 19 15 19 10C19 7 17 5 15 5C13.5 5 12 6 12 8C12 6 10.5 5 9 5C7 5 5 7 5 10C5 15 12 20 12 20Z' fill='white' fill-opacity='0.8'/%3E%3C/svg%3E") no-repeat center;
+    transform: translateY(-50%);
+}
+
+/* 添加页面动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.game-grid > * {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.game-grid > *:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.game-grid > *:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+/* 在现有样式后添加搜索相关样式 */
+
+/* 搜索容器 */
+.search-container {
+    padding: 0 16px;
+    margin-bottom: 16px;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    padding: 8px 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+#searchInput {
+    flex: 1;
+    border: none;
+    font-size: 18px;
+    padding: 8px 0;
+    color: #000;
+    font-family: inherit;
+    background: transparent;
+}
+
+#searchInput::placeholder {
+    color: #8E8E93;
+}
+
+#searchInput:focus {
+    outline: none;
+}
+
+.clear-button {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: none;
+}
+
+/* 搜索结果样式 */
+.game-card {
+    transition: all 0.3s ease;
+}
+
+.game-card.hidden {
+    display: none;
+}
+
+/* 无搜索结果提示 */
+.no-results {
+    text-align: center;
+    padding: 32px 16px;
+    color: #8E8E93;
+    font-size: 18px;
+    display: none;
+}
+
+/* 拼音提示样式 */
+.pinyin-hint {
+    font-size: 14px;
+    color: #8E8E93;
+    margin-top: 4px;
+    text-align: center;
+}
+
+/* 调整游戏卡片内容布局 */
+.game-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+
+/* 添加游戏请求相关样式 */
+.no-results-container {
+    text-align: center;
+    padding: 32px 16px;
+    display: none;
+}
+
+.no-results {
+    background: white;
+    border-radius: 16px;
+    padding: 24px 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.no-results .empty-icon {
+    margin-bottom: 16px;
+}
+
+.no-results h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.no-results p {
+    font-size: 16px;
+    color: #8E8E93;
+    margin: 0;
+}
+
+.request-game {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#gameRequest {
+    width: 100%;
+    min-height: 80px;
+    padding: 12px;
+    border: 1px solid #E5E5EA;
+    border-radius: 8px;
+    font-size: 18px;
+    font-family: inherit;
+    resize: none;
+    margin-bottom: 8px;
+}
+
+#gameRequest::placeholder {
+    color: #8E8E93;
+}
+
+#gameRequest:focus {
+    outline: none;
+    border-color: #FF6B6B;
+}
+
+.char-count {
+    text-align: right;
+    color: #8E8E93;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.send-button {
+    width: 100%;
+    padding: 12px;
+    background: #FF6B6B;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.send-button:active {
+    transform: scale(0.98);
+    background: #FF5252;
+}
+
+.send-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.send-button.sending {
+    opacity: 0.7;
+    pointer-events: none;
+} 
+
+/* 消息提示样式 */
+.message-tip {
+    margin-top: 12px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    animation: fadeInUp 0.3s ease;
+}
+
+.message-tip.success {
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+
+.message-tip.error {
+    background: #FFEBEE;
+    color: #C62828;
+}
+
+/* 加载动画 */
+.loading {
+    width: 20px;
+    height: 20px;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
+
+/* 添加游戏状态提示样式 */
+.game-status {
+    display: none; /* 默认隐藏 */
+    width: 100%;
+    padding: 24px;
+    text-align: center;
+    background: white;
+    border-radius: 16px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #8E8E93;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 当所有游戏卡片都被隐藏时显示状态 */
+.game-grid .game-card.hidden ~ .game-status {
+    display: block;
+}
+
+/* 确保状态提示始终在最后显示 */
+.game-grid {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+    width: 100%;
+    max-width: 414px;
+    margin: 0 auto;
+}
+
+.game-status {
+    order: 9999; /* 确保状态提示始终在最后 */
+} 
