@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>羊了个羊</title>
+		<style>
+			/* 背景样式 */
+			#bj{
+				/* 居中属性 */
+				margin: 0px auto;
+				/* 背景 颜色*/
+				background-color:blue;
+				/* 背景 图片*/
+				background-image: url('img/bj.gif');
+				/* 背景图片百分比 */
+				background-size: 30%;
+				/* 背景平铺属性 */
+				/* background-repeat: no-repeat; */
+				/* 宽度 */
+				width:800px;
+				/* 高度 */
+				height:600px;
+				/* 内边距 */
+				padding-top: 50px;
+				padding-bottom: 50px;
+			}
+			/* 纸牌样式 */
+			.pai{
+				width: 60px;
+				height: 60px;
+			}
+			/* 场景样式 */
+			#cj{
+				width:600px;
+				height: 300px;
+				/* background-color:blue; */
+				/* 外边距 */
+				/* 做外边距 */
+				margin-left:100px;
+				
+				/* 上外边距 
+				margin-top:50px;*/
+			}
+			/* 托盘样式 */
+			#tp{
+				width: 420px;
+				height: 150px;
+				background-image: url("img/tp.png");
+				background-size: 100%;
+				/* margin-left: 190px;
+				margin-top: 50px; */
+				padding-left: 47px;
+			}
+			/* 纸牌样式 */
+			.pai2{
+				width: 60px;
+				height: 60px;
+				margin-top: 60px;
+				margin-left: -17px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <img src="./img/bj.gif" style="width:600px;height:800px"> -->
+		<div id="bj" >
+			<div style="position: absolute;">
+			 <div id="cj" style="position: absolute;">
+				
+			 </div>
+			<div id="tp" style="position: absolute;top:450px;left:190px">
+				
+			</div>
+			<img id="fh" src="img/sx.png" style="width:60px;height:70px;position: absolute;top:420px;left:580px"/>
+			<img src="img/np.png" style="width:60px;height:60px;position: absolute;top:420px;left:200px"/>
+			<img src="img/np.png" style="width:60px;height:60px;position: absolute;top:420px;left:210px"/>
+			<img id="sj"  src="img/np.png" style="width:60px;height:60px;position: absolute;top:420px;left:222px"/>
+			<img id="sy" src="img/winjiemian_2.png" style="display:none;left:240px;top:80px;position: absolute;"/>
+			</div>
+			
+		</div>
+		<audio id="yly" src="music/yly.mp3"></audio>
+		<button id="b">播放</button>
+		<button id="b2">停止</button>
+	</body>
+</html>
+<script src="js/map.js"></script>
+<script>
+	var music=document.getElementById("yly")
+	
+	var b=document.getElementById("b")
+	b.onclick=function(){
+		music.play()
+	}
+
+	b2.onclick=function(){
+		music.pause()
+	}
+	
+	//胜利开关
+	var  flag = false;
+	var  gindex = 0
+	//输赢裁判哨兵
+	var gtime = setInterval(function(){
+		console.log(score,"================")
+		//判断成功：积分超过600就胜利
+		if(score==600){
+			
+			score=601
+			//抓取输赢图片
+			document.getElementById("sy").style.display="block"//显示
+			document.getElementById("sy").setAttribute("src","img/winjiemian.png")
+			if(flag==false){
+				//清除剩余卡片
+				let pais = document.getElementsByClassName("pai")
+				for(let i=pais.length-1 ; i>=0;i--){
+					cj.removeChild(pais[i])
+				}
+				//清除托盘卡片
+				let pais2 = document.getElementsByClassName("pai2")
+				if(pais2!=undefined){
+					for(let i=pais2.length-1 ; i>=0;i--){
+						if(pais2[i][0]){
+							cj.removeChild(pais2[i])
+						}
+					}
+				}
+				//调用功能地图函数
+				guans(2,maps[gindex++])
+				let yc2 =setTimeout(function(){
+					document.getElementById("sy").style.display="none"//显示
+					document.getElementById("sy").setAttribute("src","img/winjiemian_2.png")
+					flag=false
+					clearTimeout(yc2)	
+				},800)
+				flag=true
+			}
+		}else{
+			document.getElementById("sy").style.display="none"//显示
+			document.getElementById("sy").setAttribute("src","img/winjiemian_2.png")
+			//失败的情况
+			//托盘数量是否到9个
+			if(tpnum>8){
+				//抓取输赢图片
+				document.getElementById("sy").style.display="block"//显示
+			}else{
+				document.getElementById("sy").style.display="none"//显示
+			}
+		}
+		
+		//判断成功：积分超过600就胜利
+		if(score==1001){
+			score=1002
+			//抓取输赢图片
+			document.getElementById("sy").style.display="block"//显示
+			document.getElementById("sy").setAttribute("src","img/winjiemian.png")
+			if(flag==false){
+				//清除剩余卡片
+				let pais = document.getElementsByClassName("pai")
+				for(let i=pais.length-1 ; i>=0;i--){
+					cj.removeChild(pais[i])
+				}
+				//清除托盘卡片
+				let pais2 = document.getElementsByClassName("pai2")
+				if(pais2!=undefined){
+					for(let i=pais2.length-1 ; i>=0;i--){
+						if(pais2[i][0]){
+							cj.removeChild(pais2[i])
+						}
+					}
+				}
+				//调用功能地图函数
+				guans(2,maps[gindex++])
+				let yc2 =setTimeout(function(){
+					document.getElementById("sy").style.display="none"//显示
+					document.getElementById("sy").setAttribute("src","img/winjiemian_2.png")
+					flag=false
+					clearTimeout(yc2)	
+				},800)
+				flag=true
+			}
+		}else{
+			document.getElementById("sy").style.display="none"//显示
+			document.getElementById("sy").setAttribute("src","img/winjiemian_2.png")
+			//失败的情况
+			//托盘数量是否到9个
+			if(tpnum>8){
+				//抓取输赢图片
+				document.getElementById("sy").style.display="block"//显示
+			}else{
+				document.getElementById("sy").style.display="none"//显示
+			}
+		}
+		
+		
+		
+		
+	},1000)
+	//场景
+	var cj = document.getElementById("cj")
+	//托盘
+	var tp = document.getElementById("tp");
+	//随机生成卡片
+	//抓卡片
+	var sui = document.getElementById("sj")
+	//素材
+	var arr = [
+		       "cp.png","cz.png",
+			   "hlb.png","np.png",
+			   "jd.png","ld.png",
+			   "mxt.png","sg.png",
+			   "st.png","st2.png",
+			   "sz.png","ym.png",
+			   "ym2.png"
+			   ]
+	sui.onclick= ()=>{
+		//失败情况
+		if(tpnum<9){
+			let k2=sui.cloneNode()
+			k2.removeAttribute("id") //清除id属性
+			//增牌方法
+			addp(k2)
+			//随机卡片
+			var sindex=Math.floor(Math.random()*arr.length)
+			//加标记
+			sui.setAttribute("s","1")
+			//改变图片路径
+			sui.setAttribute("src","img/"+arr[sindex])
+		}
+	}
+	
+	//随机索引
+	//计数
+	var shus=[0,0,0,0,0,0,0,0,0,0,0,0,0]
+	//地图做
+	var maps = new Array()
+	//二维数组
+	maps[0] = [
+		   [1,0,0,0,0,0,0,0,1],
+		   [0,1,0,0,0,0,0,1,0],
+		   [0,0,1,0,0,0,1,0,0],
+		   [0,0,0,1,0,1,0,0,0],
+		   [0,0,0,0,1,0,0,0,0],
+		   [1,1,1,1,1,1,1,1,1]
+	]
+	
+	maps[1] = [
+		   [0,0,1,1,1,1,1,0,0],
+		   [0,0,0,0,0,0,1,0,0],
+		   [0,0,0,1,1,1,1,0,0],
+		   [0,0,1,1,1,1,0,0,0],
+		   [0,0,1,0,0,0,0,0,0],
+		   [0,0,1,1,1,1,1,0,0]
+	]
+	maps[2] = [
+		   [0,0,0,0,0,0,0,0,0],
+		   [0,0,0,0,0,1,0,0,0],
+		   [0,0,0,0,0,1,0,0,0],
+		   [0,0,0,0,1,1,0,0,0],
+		   [0,0,0,1,0,0,0,0,0],
+		   [0,0,1,0,0,0,0,0,0]
+	]
+	
+	
+	//调用功能地图函数
+	guans(1,maps[0])
+	
+	//删除牌的方法
+	function shan(e){
+		//加入点击事件
+		e.onclick=function(){
+			//判断纸牌的总数量是否大于9
+			if(tpnum<9){
+				//点击当前卡片之后，卡片消除在场景中
+				cj.removeChild(e)
+				//在托盘当中增加这个元素
+				addp(this)
+			}
+		}
+	}
+	//托盘
+	var tindex = 0;
+	//托盘坐标纸牌的首位置
+	var tpleft = 0;
+	//托盘纸牌计数
+	var tpnum = 0;
+	//相同牌数是否到三个
+	//相同的牌是哪张？
+	var xt = "";
+	//积分
+	var score = 0 ;
+	//增加托盘纸牌的方法
+	function addp(zp){
+		//计数器
+		var js = 0 ;
+		// //累加
+		// tpleft=tpleft+60;
+		// //改样式
+		// zp.setAttribute("style","position:absolute;left:"+(tpleft)+"px;top:10px")
+		zp.setAttribute("style","none")
+		// //编号
+		// zp.setAttribute("id" ,"tp"+(tindex++))
+		zp.setAttribute("class","pai2")
+		//计数：纸牌的数量
+		tpnum++
+		//判断纸牌的总数量是否大于9
+		if(tpnum<=9){
+			//往托盘里面增
+			tp.appendChild(zp)
+		}
+		//判断是否相同，进行数量累计
+		//当前的路径信息
+		let psrc = zp.getAttribute("src")
+		//获得托盘的里的所有卡片
+		let tps = document.getElementsByClassName("pai2")//是一组卡片信息，数组
+		//遍历托盘
+		for(let i = 0 ; i < tps.length ;i++){
+			//每个元素的src属性值
+			let tpsrc = tps[i].getAttribute("src")
+			//比对src
+			if(psrc===tpsrc){
+			   //累计数增
+			   js++;
+			   xt = psrc
+			}
+		}
+		//如果当前计数到了3张
+		if(js==3){
+			//累积积分
+			score = score+200
+			tpnum = tpnum-3
+			for(let i=tps.length-1 ; i>=0 ; i--){
+				//每个元素的src属性值
+				let tpsrc = tps[i].getAttribute("src")
+				if(xt==tpsrc){
+					tp.removeChild(tps[i])
+				}
+			}
+		}
+	}
+	//诸葛亮来了
+	var zg = document.createElement("img")
+	//路径
+	zg.src="img/zgstand.gif"
+	//置顶
+	zg.style.left="600px"
+	zg.style.top="-45px"
+	zg.style.position="absolute"
+	//加入到场景
+	cj.appendChild(zg)
+	//诸葛动作
+	var stime =setInterval(function(){
+		//横坐标
+		let  zgleft = zg.offsetLeft
+		zg.style.left=zgleft-30+"px"
+		//纵坐标
+		let  zgtop = zg.offsetTop
+		zg.style.top=zgtop+25+"px"
+		if(zgleft==30){
+			//点击诸葛亮
+			zg.onclick=function(){
+				// 创建招数
+				let zhao = document.createElement("img")
+				//招数的素材
+				zhao.setAttribute("src","img/zghit.gif")
+				//招数放进场景
+				cj.appendChild(zhao)
+				//定位
+				zhao.style.left="100px"
+				zhao.style.top="100px"
+				zhao.style.width="300px"
+				zhao.style.height="300px"
+				zhao.style.position="absolute"
+				//延迟器
+				let ytime = setTimeout(function(){
+					//招数特效消失
+					cj.removeChild(zhao)
+					// 创建招数
+					let zha = document.createElement("img")
+					//招数的素材
+					zha.setAttribute("src","img/zhadan.gif")
+					//招数放进场景
+					cj.appendChild(zha)
+					//定位
+					zha.style.left="100px"
+					zha.style.top="100px"
+					zha.style.width="300px"
+					zha.style.height="300px"
+					zha.style.position="absolute"
+					// //延迟器
+					let ytime2 = setTimeout(function(){
+						//招数特效消失
+						cj.removeChild(zha)
+						clearTimeout(ytime2)
+					},1000)
+					let pais = document.getElementsByClassName("pai")
+					for(let i=pais.length-1 ; i>=0;i--){
+						cj.removeChild(pais[i])
+						score = score+50
+					}
+					clearTimeout(ytime)
+				},2500)
+			}
+			//停止定时器
+			clearInterval(stime)
+		}
+	},200)
+	//style="width: 60px; height: 60px; left: 480px; top: 300px; position: absolute;"
+	//                                  left: 480px; top: 300px; position: absolute;
+	var fh = document.getElementById("fh")
+	fh.onclick=function(){
+		let tps = document.getElementsByClassName("pai2")//是一组卡片信息，数组
+		if(tps.length>0){
+			//最后一个卡片
+			let kp = tps[tps.length-1]
+			let x = kp.getAttribute("x")
+			let y=  kp.getAttribute("y")
+			//判断是否是随机牌
+			if(x==null){
+				tp.removeChild(kp)
+				tpnum--
+			}else{
+				//分组
+				kp.setAttribute("class","pai")
+				//托盘数量减少1
+				tpnum--
+				//事件绑定
+				kp.addEventListener("ready",shan(kp))
+				//绝对定位
+				kp.style.left = x + "px"
+				kp.style.top  = y + "px"
+				kp.style.width="60px"
+				kp.style.height="60px"
+				kp.style.position="absolute"
+				//加入场景
+				cj.appendChild(kp)
+			}
+			
+		}else{
+			
+		}
+	}
+	
+</script>

@@ -1,0 +1,16 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景 -->
+    <rect width="180" height="180" rx="40" fill="#FF6B6B"/>
+    
+    <!-- 爱心 -->
+    <path d="M90 135C90 135 125 110 125 85C125 72.5 115 65 105 65C97.5 65 90 70 90 77.5C90 70 82.5 65 75 65C65 65 55 72.5 55 85C55 110 90 135 90 135Z" 
+          fill="white" 
+          stroke="white" 
+          stroke-width="5"/>
+    
+    <!-- 游戏手柄图案 -->
+    <path d="M82 95H98M90 87V103" 
+          stroke="white" 
+          stroke-width="4" 
+          stroke-linecap="round"/>
+</svg> 

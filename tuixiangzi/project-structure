@@ -1,0 +1,6 @@
+sokoban/
+├── index.html
+├── styles.css
+├── game.js
+└── assets/
+    └── sprites.js 

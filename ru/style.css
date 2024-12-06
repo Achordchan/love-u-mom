@@ -1,0 +1,298 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    background-color: #f0f0f0;
+    min-height: -webkit-fill-available;
+}
+
+.fullscreen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    height: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.game-container {
+    max-width: 428px;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    margin: 0;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    flex-shrink: 0;
+    gap: 4px;
+}
+
+.score-box {
+    background: #fff;
+    padding: 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 13px;
+}
+
+.game-board {
+    flex: 1;
+    min-height: 0;
+    max-height: 75vh;
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1/1.9;
+    margin: 4px auto;
+    background: #f8f8f8;
+    border: 2px solid #333;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0;
+    padding: 0;
+}
+
+.controls {
+    margin-top: 4px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding: 4px;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    background: #f0f0f0;
+}
+
+.control-btn {
+    padding: 8px 6px;
+    border: none;
+    border-radius: 10px;
+    background: #007AFF;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    min-height: 36px;
+}
+
+.control-btn:active {
+    background: #0051a8;
+}
+
+.next-piece-board {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.difficulty-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    margin-bottom: 4px;
+}
+
+.difficulty-btn {
+    padding: 4px 8px;
+    border: 1px solid #007AFF;
+    border-radius: 8px;
+    background: transparent;
+    color: #007AFF;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 28px;
+}
+
+.difficulty-btn.active {
+    background: #007AFF;
+    color: white;
+}
+
+.cell {
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.1s;
+    border-radius: 0;
+    border: none;
+}
+
+/* 添加分数提示的动画样式 */
+.score-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 122, 255, 0.9);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    animation: popupFade 2s ease-out forwards;
+    z-index: 100;
+}
+
+@keyframes popupFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    30% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -100%) scale(1);
+    }
+}
+
+/* 添加预览区域的网格单元格样式 */
+.preview-cell {
+    aspect-ratio: 1;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+@supports (padding-top: env(safe-area-inset-top)) {
+    .game-container {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+@supports (padding: max(0px)) {
+    .game-container {
+        padding-left: max(5px, env(safe-area-inset-left));
+        padding-right: max(5px, env(safe-area-inset-right));
+        padding-top: max(5px, env(safe-area-inset-top));
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+}
+
+/* 添加退出按钮样式 */
+.exit-btn {
+    background: #FF3B30;
+}
+
+.exit-btn:active {
+    background: #D70015;
+}
+
+/* 添加方块落地动画样式 */
+.block-fall-animation {
+    animation: blockFall 0.5s ease-out forwards;
+}
+
+@keyframes blockFall {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* 添加消行特效样式 */
+.line-clear-animation {
+    animation: lineClear 0.5s ease-out forwards;
+}
+
+@keyframes lineClear {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* 添加主题切换功能样式 */
+.theme-selector {
+    display: flex;
+    gap: 4px;
+}
+
+.theme-btn {
+    padding: 4px 8px;
+    border: 1px solid #007AFF;
+    border-radius: 8px;
+    background: transparent;
+    color: #007AFF;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.theme-btn.active {
+    background: #007AFF;
+    color: white;
+}
+
+/* 添加媒体查询，处理超大字体情况 */
+@media screen and (min-height: 700px) {
+    .game-container {
+        justify-content: space-between;
+    }
+    
+    .controls {
+        margin-bottom: env(safe-area-inset-bottom, 10px);
+    }
+}
+
+/* 处理极小屏幕情况 */
+@media screen and (max-height: 600px) {
+    .game-board {
+        max-height: 60vh;
+    }
+    
+    .controls {
+        grid-template-columns: repeat(3, 1fr);
+    }
+} 

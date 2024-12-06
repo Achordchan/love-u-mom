@@ -1,0 +1,335 @@
+:root {
+    --iphone-width: 100vw;
+    --iphone-height: 100vh;
+    --button-size: 90px;
+    --font-size-large: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-y: auto;
+    position: relative;
+}
+
+.game-container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #007AFF;
+    font-size: 16px;
+    gap: 4px;
+}
+
+h1 {
+    text-align: center;
+    margin: 10px 0;
+    color: #1c1c1e;
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+h2 {
+    color: #1c1c1e;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.game-board {
+    width: 85vw;
+    height: 85vw;
+    max-width: 400px;
+    max-height: 400px;
+    margin: 0 auto;
+    background-color: #f8f8f8;
+    border: 2px solid #e0e0e0;
+    display: grid;
+    gap: 1px;
+}
+
+.controls {
+    margin-top: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.horizontal-controls {
+    width: 240px;
+    height: 240px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#up {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#down {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+button {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 40px;
+    background-color: #007AFF;
+    color: white;
+    font-size: 32px;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    transform: none;
+}
+
+button:active {
+    background-color: #0051a8;
+    transform: scale(0.95);
+}
+
+.game-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.action-button {
+    min-width: 80px;
+    padding: 0 15px;
+}
+
+.action-button:active {
+    background-color: #388E3C;
+}
+
+.action-button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#select-level {
+    background-color: #FF9800;
+}
+
+#select-level:active {
+    background-color: #F57C00;
+}
+
+.level-select {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    overflow-y: visible;
+}
+
+.level-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 0 auto;
+    max-width: 340px;
+    padding-bottom: 20px;
+}
+
+.level-button {
+    padding: 15px;
+    background: #f8f8f8;
+    border: 2px solid #007AFF;
+    border-radius: 10px;
+    color: #007AFF;
+    font-size: 18px;
+    cursor: pointer;
+    height: auto;
+    width: auto;
+    white-space: pre-line;
+    line-height: 1.4;
+}
+
+.level-button.completed {
+    background: #007AFF;
+    color: white;
+}
+
+.level-button.current {
+    border-color: #4CAF50;
+    color: #4CAF50;
+}
+
+.game-info {
+    font-size: var(--font-size-large);
+    margin: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* 游戏状态控制 */
+.game-board,
+.controls,
+.game-info {
+    display: none;
+}
+
+.game-active .game-board,
+.game-active .controls,
+.game-active .game-info {
+    display: flex;
+}
+
+.game-active .game-board {
+    display: grid;
+}
+
+.game-active .level-select {
+    display: none;
+}
+
+.level-select::-webkit-scrollbar {
+    width: 8px;
+}
+
+.level-select::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.level-select::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+    border: 2px solid #f1f1f1;
+}
+
+.level-select::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(76, 175, 80, 0.9);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    animation: fadeInOut 1.5s ease-in-out;
+    z-index: 1000;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    80% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
+
+.game-active .game-container {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.game-active .game-content {
+    padding-bottom: 0;
+}
+
+/* 提示按钮样式 */
+#hint {
+    background-color: #9C27B0;
+    min-width: 100px;
+}
+
+#hint:active {
+    background-color: #7B1FA2;
+}
+
+/* 提示消息样式 */
+.hint-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 18px;
+    max-width: 80%;
+    text-align: center;
+    animation: fadeInOut 3s ease-in-out;
+    z-index: 1000;
+    white-space: pre-wrap;
+    line-height: 1.4;
+}
+  

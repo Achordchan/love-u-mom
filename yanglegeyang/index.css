@@ -1,0 +1,159 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2vh;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+}
+
+/*** 按钮 ***/
+.btn {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 12px 24px;
+  font-size: 16px;
+  background: #007AFF;
+  color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover {
+  background: #3cb0fd;
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+.btn:active {
+  background: #0056b3;
+}
+.btn+.btn {
+  margin-left: 12px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.wrap {
+  padding: 32px;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/*** 卡片容器 ***/
+.container {
+  position: relative;
+  width: 360px;
+  height: 360px;
+  max-width: 500px;
+}
+
+/*** 卡片 ***/
+.card-wrap {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  font-size: 36px;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.card span {
+  opacity: 0.7;
+  font-size: 36px;
+}
+.is-allow {
+  background-color: #ffffff;
+}
+.is-allow span {
+  opacity: 1;
+}
+/*** 卡片动画 ***/
+@keyframes scaleDraw {
+  0% {
+    transform: scale(1.1);
+  }
+  20% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+/*** 卡槽 ***/
+.card-slot {
+  margin-top: 24px;
+  padding: 12px 32px;
+  height: 60px;
+  width: 360px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 卡槽内的卡片样式 */
+.card-slot .card-wrap {
+  position: relative;
+  height: 45px;
+  width: 45px;
+  margin: 0 4px;
+}
+
+.card-slot .card span {
+  font-size: 32px;
+}
+
+/* 标题样式优化 */
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+/* 下拉选择框样式优化 */
+select {
+  margin: 0 8px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+}

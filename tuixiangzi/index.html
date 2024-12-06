@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>推箱子 - 经典版</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-content">
+            <h1>推箱子</h1>
+            <div class="game-info">
+                <span class="current-level">当前关卡: 1</span>
+                <span class="moves">步数: 0</span>
+            </div>
+            <div class="game-board"></div>
+            <div class="level-select">
+                <div class="level-grid"></div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="game-actions">
+                <button id="undo" class="action-button">
+                    <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path d="M8 3L3 8l5 5V9.5c3 0 5.5 1.5 7 4.5-0.5-3.5-2-7-7-8V3z" fill="currentColor"/>
+                    </svg>
+                    撤销
+                </button>
+                <button id="hint" class="action-button">帮我走一步</button>
+                <button id="select-level" class="action-button">选关</button>
+            </div>
+            
+            <div class="horizontal-controls">
+                <button id="left">←</button>
+                <button id="up">↑</button>
+                <button id="down">↓</button>
+                <button id="right">→</button>
+            </div>
+        </div>
+    </div>
+    <script src="assets/sprites.js"></script>
+    <script src="assets/levels.js"></script>
+    <script src="game.js"></script>
+</body>
+</html> 
